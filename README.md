@@ -4,8 +4,7 @@
 <b>Discipline | <b> Mechanical Engineering
 :--|:--|
 <b> Lab | <b> Engineering Dynamics Lab
-<b> Experiment|     <b> COEFFICIENT OF RESTITUTION AND CONSERVATION OF LINEAR
-MOMENTUM
+<b> Experiment|     <b> COEFFICIENT OF RESTITUTION AND CONSERVATION OF LINEAR MOMENTUM
 
 ### About the Experiment 
 
