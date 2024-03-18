@@ -1,38 +1,42 @@
+
 {
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "A change in momentum may result from",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "an acceleration",
+        "b": "a force",
+        "c": "an impulse",
+        "d": "All of the above"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
+      
+      "correctAnswer": "d",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Two cars of equal weights and velocities collide with each other and comes to rest. Identify the type of collision",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Elastic collision, because internal kinetic energy is conserved",
+        "b": "Inelastic collision, because internal kinetic energy is not conserved",
+        "c": "Elastic collision, because internal kinetic energy is not conserved",
+        "d": "Inelastic collision, because internal kinetic energy is conserved"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    
+    {
+      "question": "A sphere of mass m and initial velocity vA strikes a stationary sphere of mass 2m. If sphere A has zero velocity after impact. What is the coefficient of restitution due to the impact",
+      "answers": {
+        "a": "e = 0",
+        "b": "e = 0.5",
+        "c": "e = 1",
+        "d": "Insufficient information"
       },
-      "correctAnswer": "c",
+     
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]
