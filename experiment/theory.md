@@ -106,6 +106,10 @@ forms a thin layer on the surface of the track. This layer fills the space betwe
 surface of a glider. As a result, the movement of the glider can be regarded as almost friction-free.
 The gliders have provision to attach velcro-pads on one side, which will allow the carts to stick together.
 They also have provision to add extra weights
+<p align="center">
+  <img src="images/11.png">
+</p> 
+
 Please note that
 * Do not slide the air gliders on the air-track without the air supply on
 * Keep glider speeds less than 30 cm/s for best results.
