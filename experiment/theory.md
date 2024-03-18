@@ -42,8 +42,9 @@ term I. A more generalised form of the equation can be written as follows
 </p> 
 This equation represents the Impulse-Momentum Principle and can be expressed in terms of impulsemomentum
 diagrams
+
 <p align="center">
-  <img src="images/5.png">
+  <img src="images/6.png">
 </p> 
 
 Impulse-Momentum principle is a powerful tool that can be applied for a system of particles in which the
@@ -65,7 +66,7 @@ words, if the momentum of one object decreases by a certain value, the momentum 
 increases by an equal amount.
 
 <p align="center">
-  <img src="images/6.png">
+  <img src="images/7.png">
 </p> 
 
 Theoretically, there are two special kinds of collisions: the perfectly elastic and perfectly inelastic collisions.
@@ -73,14 +74,14 @@ While both of these processes conserve momentum, in the perfectly elastic collis
 is also conserved (no loss in KE).
 
 <p align="center">
-  <img src="images/7.png">
+  <img src="images/8.png">
 </p> 
 
 In a perfectly inelastic collision, the objects which collide and stick together. Here the kinetic energy is not
 conserved since some of the energy is lost into other forms
 
 <p align="center">
-  <img src="images/8.png">
+  <img src="images/9.png">
 </p> 
 
 However, in most practical applications, collisions are neither perfectly elastic nor perfectly inelastic but
@@ -90,7 +91,7 @@ colliding objects before collision is greater than that after the collision. In 
 quantity called the coefficient of restitution, a measure of the elasticity of the collision
 
 <p align="center">
-  <img src="images/9.png">
+  <img src="images/10.png">
 </p> 
 
 For a perfectly elastic collision, e = 1 and for a perfectly inelastic collision (starting with two bodies and
