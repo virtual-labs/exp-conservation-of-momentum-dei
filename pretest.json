@@ -1,0 +1,53 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "If v is the velocity and L is the angular momentum of a body in uniform circular motion, then",
+      "answers": {
+        "a": "v varies but L is constant",
+        "b": "L varies but v is constant",
+        "c": "magnitude of v and L is constant",
+        "d": "Both L and v are varies"
+      },
+      
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The impulse momentum principle is applicable",
+      "answers": {
+        "a": "if there is no external force acting on the body",
+        "b": "when the impulse is conserved",
+        "c": "when the momentum is conserved",
+        "d": "wherever Newtons law is applicable"
+      },
+      
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "A rocket soars upward based on the principle of conservation of",
+      "answers": {
+        "a": "linear momentum",
+        "b": "mass",
+        "c": "energy",
+        "d": "angular momentum"
+      },
+      
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The law of conservation of linear momentum for a system of particles can mathematically expressed as ",
+      "answers": {
+        "a": "dP/dt = 0",
+        "b": "dP/dt = Finternal",
+        "c": "dF/dt = P",
+        "d": "dF/dt = 0"
+      },
+     
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    }
+  ]
+}

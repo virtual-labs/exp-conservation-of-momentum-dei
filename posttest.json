@@ -1,0 +1,43 @@
+
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "A change in momentum may result from",
+      "answers": {
+        "a": "an acceleration",
+        "b": "a force",
+        "c": "an impulse",
+        "d": "All of the above"
+      },
+      
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Two cars of equal weights and velocities collide with each other and comes to rest. Identify the type of collision",
+      "answers": {
+        "a": "Elastic collision, because internal kinetic energy is conserved",
+        "b": "Inelastic collision, because internal kinetic energy is not conserved",
+        "c": "Elastic collision, because internal kinetic energy is not conserved",
+        "d": "Inelastic collision, because internal kinetic energy is conserved"
+      },
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    
+    {
+      "question": "A sphere of mass m and initial velocity vA strikes a stationary sphere of mass 2m. If sphere A has zero velocity after impact. What is the coefficient of restitution due to the impact",
+      "answers": {
+        "a": "e = 0",
+        "b": "e = 0.5",
+        "c": "e = 1",
+        "d": "Insufficient information"
+      },
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+  ]
+}
