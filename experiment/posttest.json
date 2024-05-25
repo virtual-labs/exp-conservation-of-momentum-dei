@@ -1,43 +1,115 @@
-
 {
-  "version": 2.0,
-  "questions": [
-    {
-      "question": "A change in momentum may result from",
-      "answers": {
-        "a": "an acceleration",
-        "b": "a force",
-        "c": "an impulse",
-        "d": "All of the above"
-      },
-      
-      "correctAnswer": "d",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "Two cars of equal weights and velocities collide with each other and comes to rest. Identify the type of collision",
-      "answers": {
-        "a": "Elastic collision, because internal kinetic energy is conserved",
-        "b": "Inelastic collision, because internal kinetic energy is not conserved",
-        "c": "Elastic collision, because internal kinetic energy is not conserved",
-        "d": "Inelastic collision, because internal kinetic energy is conserved"
-      },
-      
-      "correctAnswer": "b",
-      "difficulty": "beginner"
-    },
-    
-    {
-      "question": "A sphere of mass m and initial velocity vA strikes a stationary sphere of mass 2m. If sphere A has zero velocity after impact. What is the coefficient of restitution due to the impact",
-      "answers": {
-        "a": "e = 0",
-        "b": "e = 0.5",
-        "c": "e = 1",
-        "d": "Insufficient information"
-      },
-     
-      "correctAnswer": "b",
-      "difficulty": "beginner"
-    }
-  ]
+    "version": 2,
+    "questions": [
+        {
+            "question": "In a perfectly elastic collision, what happens to the total kinetic energy of the system?",
+            "answers": {
+                "a": "It increases",
+                "b": "It decreases",
+                "c": "It remains constant",
+                "d": "It becomes zero"
+            },
+            "correctAnswer": "c",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What quantity is conserved during any collision, whether elastic, inelastic, or perfectly inelastic?",
+            "answers": {
+                "a": "Kinetic energy",
+                "b": "Momentum",
+                "c": "Potential energy",
+                "d": "Frictional force"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which law states that the total momentum of an isolated system remains constant unless acted upon by an external force?",
+            "answers": {
+                "a": "Newton's First Law",
+                "b": "Newton's Second Law",
+                "c": "Newton's Third Law",
+                "d": "Law of Conservation of Linear Momentum"
+            },
+            "correctAnswer": "d",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the coefficient of restitution (e) for a perfectly inelastic collision?",
+            "answers": {
+                "a": "0",
+                "b": "1",
+                "c": "Less than 1",
+                "d": "Greater than 1"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which factor could affect the accuracy of experimental results when investigating the conservation of linear momentum and kinetic energy in collisions?",
+            "answers": {
+                "a": "Air resistance",
+                "b": "Temperature",
+                "c": "Color of the objects",
+                "d": "Altitude"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "How is the percentage difference in momentum calculated before and after a collision?",
+            "answers": {
+                "a": "Subtract the final momentum from the initial momentum",
+                "b": "Divide the difference in momentum by the initial momentum",
+                "c": "Multiply the difference in momentum by 100",
+                "d": "All of the above"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does the law of conservation of linear momentum imply about the total momentum of a closed system?",
+            "answers": {
+                "a": "It increases over time",
+                "b": "It decreases over time",
+                "c": "It remains constant over time",
+                "d": "It fluctuates randomly over time"
+            },
+            "correctAnswer": "c",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What type of collision results in a loss of kinetic energy?",
+            "answers": {
+                "a": "Perfectly elastic",
+                "b": "Perfectly inelastic",
+                "c": "Partially elastic",
+                "d": "All collisions conserve kinetic energy"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the purpose of using an air track in collision experiments?",
+            "answers": {
+                "a": "To reduce friction between objects",
+                "b": "To increase air resistance",
+                "c": "To measure temperature accurately",
+                "d": "To provide a cushioning effect during collisions"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following equations represents the impulse-momentum principle?",
+            "answers": {
+                "a": "F=ma",
+                "b": "Δp=F⋅Δt",
+                "c": "F=Δp / Δt",
+                "d": "F=mv / t"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        }
+    ]
 }
