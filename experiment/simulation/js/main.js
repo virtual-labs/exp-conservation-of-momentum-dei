@@ -9,7 +9,6 @@ const slider_velocity1 = document.getElementById('currentvelocity1');
 const slider_length1 = document.getElementById('currentlength1');
 const slider_length2 = document.getElementById('currentlength2');
 
-// const radioInput = document.getElementById('elastic');
 
 function showMass1(newmass) {
   //get the element
@@ -80,40 +79,38 @@ var max = 0.95;
 var g_elastic = ((Math.random() * (max - min + 0.01)) + min).toFixed(2);
 // var g_inelastic =((Math.random() * (0.85 - 0.60 +0.01) )+ 0.60).toFixed(2) ;
 var g_inelastic = 0.61;
-// var h = 0.96;
 var h =((Math.random() * (0.98 -0.91 +0.01) )+ 0.91).toFixed(2) ;
 // console.log("g_elastic: " + g_elastic);
 // console.log("h: " + h);
 
-var x1 = 60;
-var x2 = 400;
-var y1 = 215;
-
 var animationId = null;    // Variable to store the animation request ID
 
-var redCubeMoving = true;
-var blueCubeMoving = false;
-var redGliderMovingBackward = false;
-var blueGliderMovingBackward = false;
-var redGliderMovingForward = false;
-
-
-function calculateFinalV2(v1, h, m1, m2, g) {     // final velocity of blue glider
+function calculateFinalV2_elastic(v1, h, m1, m2, g) {     // final velocity of blue glider
   const sqrtTerm = Math.sqrt(1 - (((m1 / m2) + (1 / m2)) * (1 - (Math.pow(h, 2) / g))));
 
   const v2 = ((v1 / h) * (1 + sqrtTerm)) / (1 + (1 / m1));
   // console.log("final v2 :  "+v2);
-  document.getElementById("FinalVelocity_V1").innerHTML = v2.toFixed(3);           //value shown in table
+  document.getElementById("FinalVelocity_V2").innerHTML = v2.toFixed(3);           //value shown in table
   return v2;
 }
 
-function calculateFinalV1(v1, h, m1, m2, v2) {        // final velocity of red glider
-  console.log("h: " +h + "    m1:  " + m1+ "    m2:  " + m2 + "    v1:   " +v1 +"   v2:  "+ v2 + "  ")
+function calculateFinalV1_elastic(v1, h, m1, m2, v2) {        // final velocity of red glider
+  // console.log("h: " +h + "    m1:  " + m1+ "    m2:  " + m2 + "    v1:   " +v1 +"   v2:  "+ v2 + "  ")
   var V1 = (1 / m1) * ((m1 * v1 / h) - (m2 * v2));
   // console.log("final v1 :  "+V1);
-  document.getElementById("FinalVelocity_V2").innerHTML = V1.toFixed(3);     //value shown in table
+  document.getElementById("FinalVelocity_V1").innerHTML = V1.toFixed(3);     //value shown in table
 
   return V1;
+}
+
+function calculateFinalVelocity_inelastic(v1, h, m1, m2) {     // final velocity of blue glider and red glider
+
+  const v2 = (m1 * v1) / (h *(m1 + m2));
+  // console.log("final v2 :  "+v2);
+  document.getElementById("FinalVelocity_V2").innerHTML = v2.toFixed(3);           //value shown in table
+  document.getElementById("FinalVelocity_V1").innerHTML = v2.toFixed(3);           //value shown in table
+
+  return v2;
 }
 
 const radioInput = document.getElementById('elastic');
@@ -157,64 +154,37 @@ function uncheckCheckbox(checkboxId) {
 
 }
 
+var x1 = 60;     // position of red glider
+var x2 = 400;    // position of blue glider
+var y1 = 215;
+
+
+var redGliderMoving = true;
+var blueGliderMoving = false;
+var redGliderMovingBackward = false;
+var blueGliderMovingBackward = false;
+var redGliderMovingForward = false;
+
 function drawMotion() {
+
+  var finalVel1;
+  var finalVel2;
+
+  var elasticRadio = document.getElementById("elastic");
+  var inelasticRadio = document.getElementById("inelastic");
+
+// Check if the "Elastic" radio button is checked
+  if (elasticRadio.checked) {
+    finalVel2 = calculateFinalV2_elastic(velocity1, h, mass1, mass1, g_elastic); //final velocity of glider 2
+    finalVel1 = calculateFinalV1_elastic(velocity1, h, mass1, mass2, finalVel2); //final velocity of glider 1
+    // console.log("elastic");
   
-
-  var finalVel2 = calculateFinalV2(velocity1, h, mass1, mass1, g_elastic);     //final velocity of glider 2
-  var finalVel1 = calculateFinalV1(velocity1, h, mass1, mass2, finalVel2);    //final velocity of glider 1
-  // console.log("final Velocity of red glide: " + finalVel1);
-  // console.log("final Velocity of blue glide: " + finalVel2);
-  // console.log("velocity1: " + velocity1);
-  // console.log("mass1: " + mass1 + "   mass2: " + mass2);
-
-  //initial momentum
-  var iniMomentum_Glider1 = mass1*velocity1;
-  var iniMomentum_Glider2 = mass2*velocity2;
-  
-  // final momentum
-   
-  var finalMomentum_Glider1 = mass1*finalVel1;
-  var finalMomentum_Glider2 = mass2*finalVel2;
-
-  document.getElementById("InitialMomentum_V1").innerHTML = iniMomentum_Glider1.toFixed(3);     //values shown in table
-  document.getElementById("FinalalMomentum_V1").innerHTML = finalMomentum_Glider1.toFixed(3); 
-  document.getElementById("FinalalMomentum_V2").innerHTML = finalMomentum_Glider2.toFixed(3);  
-
-  // Coefficient of Restitution
-  var e = -((finalVel1 - finalVel2)/ (velocity1 - velocity2));           
-  document.getElementById("Coef_Of_Res").innerHTML = e.toFixed(3);     //values shown in table
-
-//percent diffrence momentum 
-  var p_f = iniMomentum_Glider1 + iniMomentum_Glider2;               //total final momentum 
-  var p_i = finalMomentum_Glider1 + finalMomentum_Glider2;             //total initial momentum 
-  var per_diff = ((Math.abs(p_f - p_i))/((p_f + p_i)/2))*100;                 //percent diffrence momentum 
-  document.getElementById("percentage_diff_momentum").innerHTML = per_diff.toFixed(3); 
-  
- // Kinetic Energy
- var initial_KE1 =( mass1*velocity1*velocity1)/2;      // initial kinetic energy for glider 1
- var initial_KE2 = (mass2*velocity2*velocity2)/2;       // initial kinetic energy for glider 2
-
- var final_KE1 =( mass1*velocity1*finalVel1)/2;      // final kinetic energy for glider 1
- var final_KE2 = (mass2*velocity2*finalVel2)/2;       // final kinetic energy for glider 2
-
-
-
-  var total_initial_KE = initial_KE1 + initial_KE2;   //Total Initial Kinetic Energy KE (J)
-  var total_final_KE = final_KE1 + final_KE2;     //Total Final Kinetic Energy KE (J)
-
-  document.getElementById("total_Initial_KE").innerHTML = total_initial_KE.toFixed(3); 
-  document.getElementById("total_Final_KE").innerHTML = total_final_KE.toFixed(3);  
-
-  var per_diff_KE = ((Math.abs(total_final_KE - total_initial_KE)) / ((total_final_KE + total_initial_KE)/2))*100;   //Percentage Difference in Kinetic Energy
-  document.getElementById("percentage_diff_KE").innerHTML = per_diff_KE.toFixed(3);  
-                                             
-  
-  if (redCubeMoving) {
+  if (redGliderMoving) {
     x1 += velocity1*10; 
-    console.log("x1      "+x1 +"  " )
+    // console.log("x1      "+x1 +"  " );
     if (x1 >= canvas.width - 460) {
-        redCubeMoving = false; 
-        blueCubeMoving = true;
+        redGliderMoving = false; 
+        blueGliderMoving = true;
       redGliderMovingBackward = true;
     }
     if (x2 >= canvas.width - 105) {
@@ -222,10 +192,10 @@ function drawMotion() {
 
     }
   }
-  if (blueCubeMoving) {
+  if (blueGliderMoving) {
     x2 += finalVel2*10; 
     if (x2 >= canvas.width - 115) {
-        blueCubeMoving = false; 
+        blueGliderMoving = false; 
         blueGliderMovingBackward = true;
     }
   }
@@ -250,7 +220,90 @@ function drawMotion() {
         redGliderMovingForward = false; 
     }
   }
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  // Check if the "Inelastic" radio button is checked
+  else if (inelasticRadio.checked) {
+    finalVel2 = calculateFinalVelocity_inelastic(velocity1, h, mass1, mass2); //final velocity of glider 2
+    finalVel1 = calculateFinalVelocity_inelastic(velocity1, h, mass1, mass2); //final velocity of glider 1
+    // console.log("inelastic");
+  
+    if (redGliderMoving) {
+      x1 += velocity1*10; 
+      if (x1 >= canvas.width - 460) {
+        redGliderMoving = false; 
+        redGliderMovingForward = true; 
+        blueGliderMoving = true;
+      }
+    }
+    if (redGliderMovingForward) {
+      x1 +=finalVel1*10; 
+    }
+    if (redGliderMovingBackward) {
+      x1 -= finalVel1*10; 
+    }
+    if (blueGliderMoving) {
+      x2 += finalVel2*10; 
+      if (x2 >= canvas.width - 115) {
+          blueGliderMoving = false; 
+          blueGliderMovingBackward = true;
+          redGliderMovingForward =false; 
+          redGliderMovingBackward = true;
+      }
+    }
+    if (blueGliderMovingBackward) {
+      x2 -=finalVel2*10;
+      if (x2 <= canvas.width - 225) {
+        blueGliderMovingBackward = false;
+        redGliderMovingBackward = false;
+      }
+    }
+
+  }
+ 
+  // console.log("final Velocity of red glide: " + finalVel1);
+  // console.log("final Velocity of blue glide: " + finalVel2);
+  // console.log("velocity1: " + velocity1);
+  // console.log("mass1: " + mass1 + "   mass2: " + mass2);
+
+  //initial momentum
+  var iniMomentum_Glider1 = mass1*velocity1;
+  var iniMomentum_Glider2 = mass2*velocity2;
+  
+  // final momentum
+  var finalMomentum_Glider1 = mass1*finalVel1;
+  var finalMomentum_Glider2 = mass2*finalVel2;
+
+  document.getElementById("InitialMomentum_V1").innerHTML = iniMomentum_Glider1.toFixed(3);     //values shown in table
+  document.getElementById("FinalMomentum_V1").innerHTML = finalMomentum_Glider1.toFixed(3); 
+  document.getElementById("FinalMomentum_V2").innerHTML = finalMomentum_Glider2.toFixed(3);  
+
+  // Coefficient of Restitution
+  var e = -((finalVel1 - finalVel2)/ (velocity1 - velocity2));           
+  document.getElementById("Coef_Of_Res").innerHTML = e.toFixed(3);     //values shown in table
+
+//percent diffrence momentum 
+  var p_f = iniMomentum_Glider1 + iniMomentum_Glider2;               //total final momentum 
+  var p_i = finalMomentum_Glider1 + finalMomentum_Glider2;             //total initial momentum 
+  var per_diff = ((Math.abs(p_f - p_i))/((p_f + p_i)/2))*100;                 //percent diffrence momentum 
+  document.getElementById("percentage_diff_momentum").innerHTML = per_diff.toFixed(3); 
+  
+ // Kinetic Energy
+ var initial_KE1 =( mass1*velocity1*velocity1)/2;      // initial kinetic energy for glider 1
+ var initial_KE2 = (mass2*velocity2*velocity2)/2;       // initial kinetic energy for glider 2
+
+ var final_KE1 =( mass1*velocity1*finalVel1)/2;      // final kinetic energy for glider 1
+ var final_KE2 = (mass2*velocity2*finalVel2)/2;       // final kinetic energy for glider 2
+
+  var total_initial_KE = initial_KE1 + initial_KE2;   //Total Initial Kinetic Energy KE (J)
+  var total_final_KE = final_KE1 + final_KE2;     //Total Final Kinetic Energy KE (J)
+
+  document.getElementById("total_Initial_KE").innerHTML = total_initial_KE.toFixed(3); 
+  document.getElementById("total_Final_KE").innerHTML = total_final_KE.toFixed(3);  
+
+  var per_diff_KE = ((Math.abs(total_final_KE - total_initial_KE)) / ((total_final_KE + total_initial_KE)/2))*100;   //Percentage Difference in Kinetic Energy
+  document.getElementById("percentage_diff_KE").innerHTML = per_diff_KE.toFixed(3);  
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);  
   drawSetup();
 
   // Request the next frame for animation
@@ -276,8 +329,8 @@ function reset() {
     animationId = null;
     x1 = 60;
     x2 = 400;
-    redCubeMoving = true;
-    blueCubeMoving = false;
+    redGliderMoving = true;
+    blueGliderMoving = false;
     finalVel2 = 0;
     finalVel1 = 0;
     const allSpans = document.getElementsByTagName('span');
@@ -366,6 +419,8 @@ function drawSetup() {
   ctx.fillStyle = "white";
   ctx.font = "13px Arial";
   ctx.fillText("PUMP", 20, 358);
+
+  
 }
 
 function drawGliders() {
@@ -408,6 +463,8 @@ function drawGliders() {
   ctx.closePath();
   ctx.fillStyle = gradient2;             // blue glider
   ctx.fill();
+  
+  
 }
 
 function drawScale() {
