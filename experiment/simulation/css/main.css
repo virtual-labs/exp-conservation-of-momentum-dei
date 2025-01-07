@@ -203,3 +203,13 @@ th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+#copyright {
+  position: absolute;
+  left: 280px;
+  top: 600px;
+  height: 10px;
+  width: 2300px;
+  text-align: center;
+  font-size: 12px;
+  font-family: sans-serif;
+}
