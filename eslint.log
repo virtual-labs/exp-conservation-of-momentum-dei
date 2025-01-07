@@ -1,0 +1,20 @@
+
+/home/runner/work/exp-conservation-of-momentum-dei/exp-conservation-of-momentum-dei/experiment/simulation/js/main.js
+   13:10  warning  'showMass1' is defined but never used             no-unused-vars
+   24:10  warning  'showMass2' is defined but never used             no-unused-vars
+   35:10  warning  'showVelocity1' is defined but never used         no-unused-vars
+   46:10  warning  'showlength1' is defined but never used           no-unused-vars
+   57:10  warning  'showlength2' is defined but never used           no-unused-vars
+   81:5   warning  'g_inelastic' is assigned a value but never used  no-unused-vars
+  118:10  warning  'lock' is defined but never used                  no-unused-vars
+  133:7   warning  'elastic' is not defined                          no-undef
+  134:7   warning  'inelastic' is not defined                        no-undef
+  143:7   warning  'elastic' is not defined                          no-undef
+  144:7   warning  'inelastic' is not defined                        no-undef
+  334:5   warning  'finalVel2' is not defined                        no-undef
+  335:5   warning  'finalVel1' is not defined                        no-undef
+  343:5   warning  'elastic' is not defined                          no-undef
+  344:5   warning  'inelastic' is not defined                        no-undef
+
+✖ 15 problems (0 errors, 15 warnings)
+
