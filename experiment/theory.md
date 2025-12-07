@@ -1,8 +1,8 @@
-# Apparatus used: 
+## APPARATUS
 Linear Air track, Air blower, two gliders, two light gates, two retort stands, velcro-pads,
 additional masses, data logger/acquisition system, computer system.
 
-# THEORY
+## THEORY
 This experiment is devised to familiarize with the concept of impulse, momentum and coefficient of
 restitution and to validate the law of conservation of linear momentum and conservation of energy as applied
 to collision of objects on a linear air track.
