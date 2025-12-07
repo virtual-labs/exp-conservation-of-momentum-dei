@@ -110,6 +110,17 @@
             },
             "correctAnswer": "a",
             "difficulty": "beginner"
+        },
+        {
+          "question": "Two scenarios of head-on collision are shown: Scenario 1: Objects separate with a large relative speed after collision. Scenario 2: Objects move together with the same velocity after collision. Which option correctly relates the coefficient of restitution e to the scenarios?",
+          "answers": {
+            "a": "Scenario 1: e = 0, Scenario 2: e = 1",
+            "b": "Scenario 1: e = 1, Scenario 2: e = 0",
+            "c": "Scenario 1: e < 0, Scenario 2: e > 1",
+            "d": "In both scenarios e = 1"
+          },
+          "correctAnswer": "b",
+          "difficulty": "beginner"
         }
     ]
 }
