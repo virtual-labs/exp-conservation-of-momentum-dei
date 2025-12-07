@@ -1,8 +1,8 @@
-# Apparatus used: 
-Linear Air track, Air blower, two gliders, two light gates, two retort stands, velcro-pads,
+## APPARATUS
+Linear Air track, Air blower, two gliders, two light gates, two retort stands, Velcro-pads,
 additional masses, data logger/acquisition system, computer system.
 
-# THEORY
+## THEORY
 This experiment is devised to familiarize with the concept of impulse, momentum and coefficient of
 restitution and to validate the law of conservation of linear momentum and conservation of energy as applied
 to collision of objects on a linear air track.
@@ -100,11 +100,11 @@ between the two extremes (0 < e < 1)
 
 ### Experimental Setup
 
-The experimental setup consists of an air track with the gliders that are subjected to collision. the An air
+The experimental setup consists of an air track with the gliders that are subjected to collision. An air
 track is a perforated rail which is connected to an air blower. Compressed air is sprayed from the holes and
 forms a thin layer on the surface of the track. This layer fills the space between the air track and the inner
 surface of a glider. As a result, the movement of the glider can be regarded as almost friction-free.
-The gliders have provision to attach velcro-pads on one side, which will allow the carts to stick together.
+The gliders have provision to attach Velcro-pads on one side, which will allow the carts to stick together.
 They also have provision to add extra weights
 <p align="center">
   <img src="images/11.png">

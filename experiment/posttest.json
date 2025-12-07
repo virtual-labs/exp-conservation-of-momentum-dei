@@ -110,6 +110,63 @@
             },
             "correctAnswer": "b",
             "difficulty": "beginner"
-        }
+        },
+      {
+        "question": "Two gliders collide elastically on an air track. The data are: m1 = 0.5 kg, v1 = 2.0 m/s; m2 = 0.5 kg, v2 = 0 m/s. After collision: v1' = 0 m/s, v2' = 2.0 m/s. What is the total momentum before the collision?",
+        "answers": {
+          "a": "0 kg·m/s",
+          "b": "0.5 kg·m/s",
+          "c": "1.0 kg·m/s",
+          "d": "2.0 kg·m/s"
+        },
+        "correctAnswer": "c",
+        "difficulty": "beginner"
+      },
+      {
+        "question": "Using the same data as the previous question, what is the total momentum after the collision?",
+        "answers": {
+          "a": "0 kg·m/s",
+          "b": "0.5 kg·m/s",
+          "c": "1.0 kg·m/s",
+          "d": "2.0 kg·m/s"
+        },
+        "correctAnswer": "c",
+        "difficulty": "beginner"
+      },
+      {
+        "question": "For the collision in the previous questions, which statement is most accurate?",
+        "answers": {
+          "a": "Momentum is not conserved because the velocities changed",
+          "b": "Momentum is conserved because total momentum before and after is equal",
+          "c": "Kinetic energy must be lost because the objects collided",
+          "d": "Both momentum and kinetic energy are not conserved"
+        },
+        "correctAnswer": "b",
+        "difficulty": "beginner"
+      },
+      {
+        "question": "In another experiment: m1 = 0.4 kg, v1 = 3.0 m/s; m2 = 0.6 kg, v2 = 0 m/s. After collision the gliders stick together and move with v' = 1.2 m/s. What type of collision is this?",
+        "answers": {
+          "a": "Perfectly elastic",
+          "b": "Perfectly inelastic",
+          "c": "Partially elastic",
+          "d": "No collision occurred"
+        },
+        "correctAnswer": "b",
+        "difficulty": "intermediate"
+      },
+      {
+        "question": "The coefficient of restitution e is calculated in three trials: Trial A: e = 0.75; Trial B: e = 1.0; Trial C: e = 0.30. Which option correctly matches the type of collision to the value of e?",
+        "answers": {
+          "a": "e = 1.0: perfectly inelastic",
+          "b": "0 < e < 1: partially elastic",
+          "c": "e = 0: perfectly elastic",
+          "d": "e > 1: perfectly"
+        },
+        "correctAnswer": "b",
+        "difficulty": "beginner"
+      }
+
+
     ]
 }
