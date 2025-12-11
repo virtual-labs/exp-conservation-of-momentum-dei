@@ -73,7 +73,6 @@ body {
   margin-bottom: 2%;
 }
 .play {
-  
   font-size: 18px;
   margin-top: 10%;
 }
@@ -89,7 +88,6 @@ body {
 
 .reset {
   font-size: 18px;
-
 }
 #resetButton {
   position: absolute;
@@ -137,7 +135,7 @@ body {
 .table_button:hover {
   background: #78b5e3;
 }
-.overlay { 
+.overlay {
   position: fixed;
   top: 0;
   bottom: 0;
