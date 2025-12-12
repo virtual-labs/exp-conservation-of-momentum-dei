@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiment-6</title>
+  </head>
+
+  <body>
+    <div id="mainContainer">
+      <div id="container">
+        <div id="header">
+          <h3>
+            COEFFICIENT OF RESTITUTION AND CONSERVATION OF LINEAR MOMENTUM
+          </h3>
+        </div>
+
+        <div id="simulation">
+          <!-- LEFT PANE -->
+          <div id="leftPane">
+            <div class="radioSelection">
+              <p class="object_selection">
+                Please select the behaviour of objects:
+              </p>
+              <input
+                type="radio"
+                id="elastic"
+                name="collision_type"
+                value="Elastic"
+                checked
+              />
+              <label class="elastic_label" for="elastic">Elastic</label><br />
+              <input
+                type="radio"
+                id="inelastic"
+                name="collision_type"
+                value="Inelastic"
+              />
+              <label class="inelastic_label" for="inelastic">Inelastic</label
+              ><br /><br />
+            </div>
+
+            <div class="mass_object1">
+              • Mass of Red Glider m<sub>1</sub> (kg)
+            </div>
+            <div id="slider_mass1">
+              0.2
+              <input
+                type="range"
+                class="range"
+                id="currentmass1"
+                min="0.2"
+                max="0.5"
+                value="0.2"
+                step="0.1"
+                oninput="showMass1(this.value)"
+                onchange="showMass1(this.value)"
+              />0.5
+            </div>
+            <div id="initialMassValue1">0.2</div>
+
+            <div class="mass_object2">
+              • Mass of Blue Glider m<sub>2</sub> (kg)
+            </div>
+            <div id="slider_mass2">
+              0.2
+              <input
+                type="range"
+                class="range"
+                id="currentmass2"
+                min="0.2"
+                max="0.5"
+                value="0.2"
+                step="0.1"
+                oninput="showMass2(this.value)"
+                onchange="showMass2(this.value)"
+              />0.5
+            </div>
+            <div id="initialMassValue2">0.2</div>
+
+            <div class="velocity_object1">
+              • Initial Velocity of Red Glider v<sub>1</sub> (m/s)
+            </div>
+            <div id="slider_velocity1">
+              0.1
+              <input
+                type="range"
+                class="range"
+                id="currentvelocity1"
+                min="0.1"
+                max="0.4"
+                value="0.1"
+                step="0.1"
+                oninput="showVelocity1(this.value)"
+                onchange="showVelocity1(this.value)"
+              />0.4
+            </div>
+            <div id="initialVelocityValue1">0.1</div>
+
+            <div class="length_object1">
+              • Length of Red Glider l<sub>1</sub> (cm)
+            </div>
+            <div id="slider_length1">
+              5
+              <input
+                type="range"
+                class="range"
+                id="currentlength1"
+                min="5"
+                max="10"
+                value="5"
+                step="1"
+                oninput="showlength1(this.value)"
+                onchange="showlength1(this.value)"
+              />10
+            </div>
+            <div id="initialLengthValue1">5</div>
+
+            <div class="length_object2">
+              • Length of Blue Glider l<sub>2</sub> (cm)
+            </div>
+            <div id="slider_length2">
+              5
+              <input
+                type="range"
+                class="range"
+                id="currentlength2"
+                min="5"
+                max="10"
+                value="5"
+                step="1"
+                oninput="showlength2(this.value)"
+                onchange="showlength2(this.value)"
+              />10
+            </div>
+            <div id="initialLengthValue2">5</div>
+
+            <div id="lockPopUp"></div>
+            <div class="lock">Lock :</div>
+            <input
+              type="checkbox"
+              id="lockCheckbox"
+              value="Lock"
+              onclick="lock()"
+            />
+          </div>
+
+          <!-- MIDDLE PANE -->
+          <div id="middlePane">
+            <canvas id="myCanvas" width="810px" height="490px"></canvas>
+          </div>
+
+          <!-- RIGHT PANE -->
+          <div id="rightPane">
+            <div class="controls">
+              <div class="control_heading"><b>Controls:-</b></div>
+              <div class="play">
+                Release
+                <button type="button" id="playButton">
+                  <img src="images/play.png" />
+                </button>
+              </div>
+
+              <div class="reset">
+                Reset
+                <button type="button" id="resetButton">
+                  <img src="images/reset.png" />
+                </button>
+              </div>
+            </div>
+            <div
+              id="energyLossInfo"
+              style="
+                margin-top: 20px;
+                padding: 12px 15px;
+                background-color: #d0e8f2;
+                border: 1px solid #0066cc;
+                border-radius: 4px;
+                text-align: left;
+              "
+            >
+              <p
+                style="
+                  margin: 0;
+                  color: #003d99;
+                  font-weight: normal;
+                  font-size: 12px;
+                  font-style: italic;
+                  line-height: 1.4;
+                "
+              >
+                <strong>Note:</strong> Experimental values are adjusted for an
+                estimated
+                <strong id="lossPercentageDisplay">2-5%</strong> mechanical
+                loss.
+              </p>
+            </div>
+
+            <!-- OBSERVATION TABLE BUTTON -->
+            <a class="table_button" href="#popup1">Observation Table</a>
+
+            <!-- NOTES BUTTON -->
+            <a class="table_button" href="#popup2" style="margin-top: 9%"
+              >Notes</a
+            >
+
+            <!-- POPUP 1: OBSERVATION TABLE -->
+            <div id="popup1" class="overlay">
+              <div class="popup">
+                <h2 style="text-align: center; text-decoration: underline">
+                  Observation Table
+                </h2>
+                <a class="close" href="#">&times;</a>
+
+                <table>
+                  <tr>
+                    <th></th>
+                    <th>Simulation</th>
+                    <th>Theoretical</th>
+                  </tr>
+
+                  <tr>
+                    <td>Collision Type</td>
+                    <td><span id="collision_type">Elastic</span></td>
+                    <td><span id="th_collision_type">Elastic</span></td>
+                  </tr>
+                  <tr>
+                    <td>Mass of Gilder 1 m<sub>1</sub> (kg)</td>
+                    <td><span id="mass1">0.2</span></td>
+                    <td><span id="th_mass1">0.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Mass of Gilder 2 m<sub>2</sub> (kg)</td>
+                    <td><span id="mass2">0.2</span></td>
+                    <td><span id="th_mass2">0.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Length of the Gilder 1 l<sub>1</sub> (cm)</td>
+                    <td><span id="length1">5</span></td>
+                    <td><span id="th_length1">5</span></td>
+                  </tr>
+                  <tr>
+                    <td>Length of Gilder 2 l<sub>2</sub> (cm)</td>
+                    <td><span id="length2">5</span></td>
+                    <td><span id="th_length2">5</span></td>
+                  </tr>
+                  <tr>
+                    <td>Initial velocity of Glider 1 v<sub>1</sub> (m/s)</td>
+                    <td><span id="velocity1">0.1</span></td>
+                    <td><span id="th_velocity1">0.1</span></td>
+                  </tr>
+                  <tr>
+                    <td>Initial velocity of Glider 2 v<sub>2</sub> (m/s)</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Final velocity of Glider 1 v<sub>1</sub>' (m/s)</td>
+                    <td><span id="FinalVelocity_V1">0</span></td>
+                    <td><span id="Theory_FinalVelocity_V1">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Final velocity of Glider 2 v<sub>2</sub>' (m/s)</td>
+                    <td><span id="FinalVelocity_V2">0</span></td>
+                    <td><span id="Theory_FinalVelocity_V2">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Initial Momentum of Glider 1 p<sub>1</sub> (kg-m/s)</td>
+                    <td><span id="InitialMomentum_V1">0</span></td>
+                    <td><span id="Theory_InitialMomentum_V1">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Initial Momentum of Glider 2 p<sub>2</sub> (kg-m/s)</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Final Momentum of Glider 1 p<sub>1</sub>' (kg-m/s)</td>
+                    <td><span id="FinalMomentum_V1">0</span></td>
+                    <td><span id="Theory_FinalMomentum_V1">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Final Momentum of Glider 2 p<sub>2</sub>' (kg-m/s)</td>
+                    <td><span id="FinalMomentum_V2">0</span></td>
+                    <td><span id="Theory_FinalMomentum_V2">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Percentage Difference in Momentum</td>
+                    <td><span id="percentage_diff_momentum">0</span></td>
+                    <td><span id="Theory_percentage_diff_momentum">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Coefficient of Restitution e</td>
+                    <td><span id="Coef_Of_Res">0</span></td>
+                    <td><span id="Theory_Coef_Of_Res">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Total Initial Kinetic Energy KE<sub>1</sub> (J)</td>
+                    <td><span id="total_Initial_KE">0</span></td>
+                    <td><span id="Theory_total_Initial_KE">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Total Final Kinetic Energy KE<sub>1</sub> (J)</td>
+                    <td><span id="total_Final_KE">0</span></td>
+                    <td><span id="Theory_total_Final_KE">0</span></td>
+                  </tr>
+                  <tr>
+                    <td>Percentage Difference in Kinetic Energy</td>
+                    <td><span id="percentage_diff_KE">0</span></td>
+                    <td><span id="Theory_percentage_diff_KE">0</span></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- POPUP 2: NOTES -->
+            <div id="popup2" class="overlay">
+              <div class="popup">
+                <h2 style="text-align: center; text-decoration: underline">
+                  Notes
+                </h2>
+                <a class="close" href="#">&times;</a>
+
+                <div class="content">
+                  <h3>Key Formulas</h3>
+                  <p>Elastic collision (v<sub>2</sub> = 0):</p>
+                  <p>
+                    v<sub>1</sub>' = (m<sub>1</sub> − m<sub>2</sub>) v<sub
+                      >1</sub
+                    >
+                    / (m<sub>1</sub> + m<sub>2</sub>)
+                  </p>
+                  <p>
+                    v<sub>2</sub>' = 2 m<sub>1</sub> v<sub>1</sub> / (m<sub
+                      >1</sub
+                    >
+                    + m<sub>2</sub>)
+                  </p>
+                  <p>Inelastic collision:</p>
+                  <p>
+                    v' = (m<sub>1</sub> v<sub>1</sub> + m<sub>2</sub>
+                    v<sub>2</sub>) / (m<sub>1</sub> + m<sub>2</sub>)
+                  </p>
+                  <p>
+                    Coefficient of restitution: e = −(v<sub>1</sub>' −
+                    v<sub>2</sub>)/(v<sub>1</sub> − v<sub>2</sub>)
+                  </p>
+
+                  <h3>Important Notes</h3>
+                  <ul>
+                    <li>
+                      Elastic Collision: Total kinetic energy and momentum are
+                      conserved; objects bounce apart after collision.
+                    </li>
+                    <li>
+                      Inelastic Collision: Momentum is conserved but kinetic
+                      energy is lost; objects move together with a common
+                      velocity.
+                    </li>
+                    <li>
+                      Coefficient of Restitution (e): e = 1 for perfectly
+                      elastic and e = 0 for perfectly inelastic collisions.
+                    </li>
+                    <li>
+                      % Error: Shows the difference between simulated and
+                      theoretical values; smaller % error means better agreement
+                      with theory.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- rightPane -->
+        </div>
+        <!-- simulation -->
+      </div>
+      <!-- container -->
+    </div>
+    <!-- mainContainer -->
+
+    <script src="./js/main.js"></script>
+
+    <div
+      id="copyright"
+      title="Developer : Harsh Pathak and Aysha,Subject Expertise : Mr.Jinshad.U, Dayalbagh Educational Instiute,Agra "
+    ></div>
+    <div
+      id="Developer_information"
+      title="Developer Name:
+                 1.Harsh Pathak
+                   (06hpathak@gmail.com)
+                 2.Aysha
+                   (06hpathak@gmail.com)
+    Subject Expertise : Mr.Jinshad.U
+    Instiute Name: Dayalbagh Educational Instiute, Agra"
+    ></div>
+  <script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>

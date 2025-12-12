@@ -1,0 +1,15 @@
+
+/home/runner/work/exp-conservation-of-momentum-dei/exp-conservation-of-momentum-dei/experiment/simulation/js/main.js
+   17:5   warning  'length1' is assigned a value but never used      no-unused-vars
+   18:5   warning  'length2' is assigned a value but never used      no-unused-vars
+   23:5   warning  'g_elastic' is assigned a value but never used    no-unused-vars
+   24:5   warning  'g_inelastic' is assigned a value but never used  no-unused-vars
+   25:5   warning  'h' is assigned a value but never used            no-unused-vars
+   90:10  warning  'showMass1' is defined but never used             no-unused-vars
+  100:10  warning  'showMass2' is defined but never used             no-unused-vars
+  110:10  warning  'showVelocity1' is defined but never used         no-unused-vars
+  121:10  warning  'showlength1' is defined but never used           no-unused-vars
+  131:10  warning  'showlength2' is defined but never used           no-unused-vars
+
+✖ 10 problems (0 errors, 10 warnings)
+

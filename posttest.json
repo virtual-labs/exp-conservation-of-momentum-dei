@@ -1,0 +1,172 @@
+{
+    "version": 2,
+    "questions": [
+        {
+            "question": "In a perfectly elastic collision, what happens to the total kinetic energy of the system?",
+            "answers": {
+                "a": "It increases",
+                "b": "It decreases",
+                "c": "It remains constant",
+                "d": "It becomes zero"
+            },
+            "correctAnswer": "c",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What quantity is conserved during any collision, whether elastic, inelastic, or perfectly inelastic?",
+            "answers": {
+                "a": "Kinetic energy",
+                "b": "Momentum",
+                "c": "Potential energy",
+                "d": "Frictional force"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which law states that the total momentum of an isolated system remains constant unless acted upon by an external force?",
+            "answers": {
+                "a": "Newton's First Law",
+                "b": "Newton's Second Law",
+                "c": "Newton's Third Law",
+                "d": "Law of Conservation of Linear Momentum"
+            },
+            "correctAnswer": "d",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the coefficient of restitution (e) for a perfectly inelastic collision?",
+            "answers": {
+                "a": "0",
+                "b": "1",
+                "c": "Less than 1",
+                "d": "Greater than 1"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which factor could affect the accuracy of experimental results when investigating the conservation of linear momentum and kinetic energy in collisions?",
+            "answers": {
+                "a": "Air resistance",
+                "b": "Temperature",
+                "c": "Color of the objects",
+                "d": "Altitude"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "How is the percentage difference in momentum calculated before and after a collision?",
+            "answers": {
+                "a": "Subtract the final momentum from the initial momentum",
+                "b": "Divide the difference in momentum by the initial momentum",
+                "c": "Multiply the difference in momentum by 100",
+                "d": "All of the above"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What does the law of conservation of linear momentum imply about the total momentum of a closed system?",
+            "answers": {
+                "a": "It increases over time",
+                "b": "It decreases over time",
+                "c": "It remains constant over time",
+                "d": "It fluctuates randomly over time"
+            },
+            "correctAnswer": "c",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What type of collision results in a loss of kinetic energy?",
+            "answers": {
+                "a": "Perfectly elastic",
+                "b": "Perfectly inelastic",
+                "c": "Partially elastic",
+                "d": "All collisions conserve kinetic energy"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What is the purpose of using an air track in collision experiments?",
+            "answers": {
+                "a": "To reduce friction between objects",
+                "b": "To increase air resistance",
+                "c": "To measure temperature accurately",
+                "d": "To provide a cushioning effect during collisions"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Which of the following equations represents the impulse-momentum principle?",
+            "answers": {
+                "a": "F=ma",
+                "b": "Δp=F⋅Δt",
+                "c": "F=Δp / Δt",
+                "d": "F=mv / t"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+      {
+        "question": "Two gliders collide elastically on an air track. The data are: m1 = 0.5 kg, v1 = 2.0 m/s; m2 = 0.5 kg, v2 = 0 m/s. After collision: v1' = 0 m/s, v2' = 2.0 m/s. What is the total momentum before the collision?",
+        "answers": {
+          "a": "0 kg·m/s",
+          "b": "0.5 kg·m/s",
+          "c": "1.0 kg·m/s",
+          "d": "2.0 kg·m/s"
+        },
+        "correctAnswer": "c",
+        "difficulty": "beginner"
+      },
+      {
+        "question": "Using the same data as the previous question, what is the total momentum after the collision?",
+        "answers": {
+          "a": "0 kg·m/s",
+          "b": "0.5 kg·m/s",
+          "c": "1.0 kg·m/s",
+          "d": "2.0 kg·m/s"
+        },
+        "correctAnswer": "c",
+        "difficulty": "beginner"
+      },
+      {
+        "question": "For the collision in the previous questions, which statement is most accurate?",
+        "answers": {
+          "a": "Momentum is not conserved because the velocities changed",
+          "b": "Momentum is conserved because total momentum before and after is equal",
+          "c": "Kinetic energy must be lost because the objects collided",
+          "d": "Both momentum and kinetic energy are not conserved"
+        },
+        "correctAnswer": "b",
+        "difficulty": "beginner"
+      },
+      {
+        "question": "In another experiment: m1 = 0.4 kg, v1 = 3.0 m/s; m2 = 0.6 kg, v2 = 0 m/s. After collision the gliders stick together and move with v' = 1.2 m/s. What type of collision is this?",
+        "answers": {
+          "a": "Perfectly elastic",
+          "b": "Perfectly inelastic",
+          "c": "Partially elastic",
+          "d": "No collision occurred"
+        },
+        "correctAnswer": "b",
+        "difficulty": "intermediate"
+      },
+      {
+        "question": "The coefficient of restitution e is calculated in three trials: Trial A: e = 0.75; Trial B: e = 1.0; Trial C: e = 0.30. Which option correctly matches the type of collision to the value of e?",
+        "answers": {
+          "a": "e = 1.0: perfectly inelastic",
+          "b": "0 < e < 1: partially elastic",
+          "c": "e = 0: perfectly elastic",
+          "d": "e > 1: perfectly"
+        },
+        "correctAnswer": "b",
+        "difficulty": "beginner"
+      }
+
+
+    ]
+}
