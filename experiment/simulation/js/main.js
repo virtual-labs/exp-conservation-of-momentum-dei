@@ -245,6 +245,11 @@ var redGliderMovingBackward = false;
 var blueGliderMovingBackward = false;
 var redGliderMovingForward = false;
 
+// Helper function for energy loss
+function applyEnergyLoss(value, lossPercentage = 5) {
+  return value * (1 - lossPercentage / 100);
+}
+
 function drawMotion() {
   var finalVel1;
   var finalVel2;
@@ -252,105 +257,138 @@ function drawMotion() {
   var elasticRadio = document.getElementById("elastic");
   var inelasticRadio = document.getElementById("inelastic");
 
+  const gliderWidth = 50;
+  const minSeparation = 5;
+  const redLeftBound = 60;
+  const energyLoss = 5; // 5% energy loss for realistic simulation
+
   if (elasticRadio.checked) {
     finalVel2 = (2 * mass1 * velocity1) / (mass1 + mass2);
     finalVel1 = ((mass1 - mass2) * velocity1) / (mass1 + mass2);
 
+    // ===== RED GLIDER MOVING (BEFORE COLLISION) =====
     if (redGliderMoving) {
       x1 += velocity1 * 10;
-      if (x1 >= canvas.width - 460) {
+
+      // Check if red glider RIGHT EDGE touches blue glider LEFT EDGE
+      if (x1 + gliderWidth >= x2) {
         redGliderMoving = false;
         blueGliderMoving = true;
         redGliderMovingBackward = true;
       }
-      if (x2 >= canvas.width - 105) {
-        x2 -= finalVel2 * 10;
-      }
     }
+
+    // ===== BLUE GLIDER MOVING (AFTER COLLISION) =====
     if (blueGliderMoving) {
       x2 += finalVel2 * 10;
-      if (x2 >= canvas.width - 115) {
+
+      // Prevent blue glider from going off right edge of canvas
+      if (x2 + gliderWidth >= canvas.width - 60) {
         blueGliderMoving = false;
         blueGliderMovingBackward = true;
       }
     }
 
-    if (blueGliderMovingBackward) {
-      x2 -= finalVel2 * 10;
-      if (x2 <= canvas.width - 225) {
-        blueGliderMovingBackward = false;
-      }
-    }
+    // ===== RED GLIDER BOUNCING BACK =====
     if (redGliderMovingBackward) {
-      x1 -= finalVel1 * 10;
-      if (x1 <= 55) {
+      x1 -= Math.abs(finalVel1) * 10;
+
+      // Stop when it reaches left boundary
+      if (x1 <= redLeftBound) {
+        x1 = redLeftBound;
         redGliderMovingBackward = false;
         redGliderMovingForward = true;
       }
     }
+
+    // ===== BLUE GLIDER BOUNCING BACK =====
+    if (blueGliderMovingBackward) {
+      x2 -= finalVel2 * 10;
+
+      // IMPORTANT: Stop blue glider BEFORE it overlaps with red glider
+      if (x2 <= x1 + gliderWidth + minSeparation) {
+        x2 = x1 + gliderWidth + minSeparation;
+        blueGliderMovingBackward = false;
+      }
+    }
+
+    // ===== RED GLIDER MOVING FORWARD (AFTER BOUNCE) =====
     if (redGliderMovingForward) {
-      x1 += finalVel1 * 10;
-      if (x1 >= 165) {
+      x1 += Math.abs(finalVel1) * 10;
+
+      // IMPORTANT: Stop red glider BEFORE it overlaps with blue glider
+      if (x1 + gliderWidth >= x2 - minSeparation) {
+        x1 = x2 - gliderWidth - minSeparation;
         redGliderMovingForward = false;
       }
     }
   } else if (inelasticRadio.checked) {
     finalVel1 = finalVel2 = (mass1 * velocity1 + mass2 * 0) / (mass1 + mass2);
 
+    // ===== RED GLIDER MOVING (BEFORE COLLISION) =====
     if (redGliderMoving) {
       x1 += velocity1 * 10;
-      if (x1 >= canvas.width - 460) {
+
+      // Check collision: red glider RIGHT EDGE touches blue glider LEFT EDGE
+      if (x1 + gliderWidth >= x2) {
         redGliderMoving = false;
-        redGliderMovingForward = true;
         blueGliderMoving = true;
       }
     }
-    if (redGliderMovingForward) {
-      x1 += finalVel1 * 10;
-    }
-    if (redGliderMovingBackward) {
-      x1 -= finalVel1 * 10;
-    }
+
+    // ===== BOTH GLIDERS MOVING TOGETHER (AFTER COLLISION - INELASTIC) =====
     if (blueGliderMoving) {
+      // Red glider also moves with blue
+      x1 += finalVel1 * 10;
       x2 += finalVel2 * 10;
-      if (x2 >= canvas.width - 115) {
+
+      // Prevent from going off right edge
+      if (x2 + gliderWidth >= canvas.width - 60) {
         blueGliderMoving = false;
         blueGliderMovingBackward = true;
-        redGliderMovingForward = false;
-        redGliderMovingBackward = true;
       }
     }
+
+    // ===== BOTH GLIDERS BOUNCING BACK TOGETHER =====
     if (blueGliderMovingBackward) {
+      x1 -= finalVel1 * 10;
       x2 -= finalVel2 * 10;
-      if (x2 <= canvas.width - 225) {
+
+      // Stop when reaching left area
+      if (x1 <= redLeftBound) {
+        x1 = redLeftBound;
+        x2 = x1 + gliderWidth + 5;
         blueGliderMovingBackward = false;
-        redGliderMovingBackward = false;
       }
     }
   }
 
-  //initial momentum
+  // ===== APPLY ENERGY LOSS TO SIMULATION VALUES =====
+  var sim_finalVel1 = applyEnergyLoss(finalVel1, energyLoss);
+  var sim_finalVel2 = applyEnergyLoss(finalVel2, energyLoss);
+
+  // ===== INITIAL MOMENTUM =====
   var iniMomentum_Glider1 = mass1 * velocity1;
   var iniMomentum_Glider2 = mass2 * velocity2;
 
-  // final momentum
-  var finalMomentum_Glider1 = mass1 * finalVel1;
-  var finalMomentum_Glider2 = mass2 * finalVel2;
+  // ===== FINAL MOMENTUM (WITH ENERGY LOSS) =====
+  var sim_finalMomentum_Glider1 = mass1 * sim_finalVel1;
+  var sim_finalMomentum_Glider2 = mass2 * sim_finalVel2;
 
   document.getElementById("InitialMomentum_V1").innerHTML =
     iniMomentum_Glider1.toFixed(3);
   document.getElementById("FinalMomentum_V1").innerHTML =
-    finalMomentum_Glider1.toFixed(3);
+    sim_finalMomentum_Glider1.toFixed(3);
   document.getElementById("FinalMomentum_V2").innerHTML =
-    finalMomentum_Glider2.toFixed(3);
+    sim_finalMomentum_Glider2.toFixed(3);
 
-  // Coefficient of Restitution
-  var e = -((finalVel1 - finalVel2) / (velocity1 - velocity2));
+  // ===== COEFFICIENT OF RESTITUTION (WITH LOSS) =====
+  var e = -((sim_finalVel1 - sim_finalVel2) / (velocity1 - velocity2));
   document.getElementById("Coef_Of_Res").innerHTML = e.toFixed(3);
 
-  //percent difference momentum
+  // ===== PERCENTAGE DIFFERENCE IN MOMENTUM (WITH LOSS) =====
   var p_i = iniMomentum_Glider1 + iniMomentum_Glider2;
-  var p_f = finalMomentum_Glider1 + finalMomentum_Glider2;
+  var p_f = sim_finalMomentum_Glider1 + sim_finalMomentum_Glider2;
   var per_diff =
     (Math.abs(p_f - p_i) / ((Math.abs(p_f) + Math.abs(p_i)) / 2)) * 100;
   document.getElementById("percentage_diff_momentum").innerHTML = isNaN(
@@ -359,33 +397,37 @@ function drawMotion() {
     ? "0"
     : per_diff.toFixed(3);
 
-  // Kinetic Energy
+  // ===== KINETIC ENERGY (WITH ENERGY LOSS) =====
   var initial_KE1 = (mass1 * velocity1 * velocity1) / 2;
   var initial_KE2 = (mass2 * velocity2 * velocity2) / 2;
 
-  var final_KE1 = (mass1 * finalVel1 * finalVel1) / 2;
-  var final_KE2 = (mass2 * finalVel2 * finalVel2) / 2;
+  var sim_final_KE1 = (mass1 * sim_finalVel1 * sim_finalVel1) / 2;
+  var sim_final_KE2 = (mass2 * sim_finalVel2 * sim_finalVel2) / 2;
 
   var total_initial_KE = initial_KE1 + initial_KE2;
-  var total_final_KE = final_KE1 + final_KE2;
+  var total_sim_final_KE = sim_final_KE1 + sim_final_KE2;
 
   document.getElementById("total_Initial_KE").innerHTML =
     total_initial_KE.toFixed(3);
   document.getElementById("total_Final_KE").innerHTML =
-    total_final_KE.toFixed(3);
+    total_sim_final_KE.toFixed(3);
 
-  // Store final velocities
-  document.getElementById("FinalVelocity_V1").innerHTML = finalVel1.toFixed(3);
-  document.getElementById("FinalVelocity_V2").innerHTML = finalVel2.toFixed(3);
+  // ===== STORE FINAL VELOCITIES (WITH LOSS) =====
+  document.getElementById("FinalVelocity_V1").innerHTML =
+    sim_finalVel1.toFixed(3);
+  document.getElementById("FinalVelocity_V2").innerHTML =
+    sim_finalVel2.toFixed(3);
 
+  // ===== PERCENTAGE DIFFERENCE IN KINETIC ENERGY (WITH LOSS) =====
   var per_diff_KE =
-    (Math.abs(total_final_KE - total_initial_KE) /
-      ((Math.abs(total_final_KE) + Math.abs(total_initial_KE)) / 2)) *
+    (Math.abs(total_sim_final_KE - total_initial_KE) /
+      ((Math.abs(total_sim_final_KE) + Math.abs(total_initial_KE)) / 2)) *
     100;
   document.getElementById("percentage_diff_KE").innerHTML = isNaN(per_diff_KE)
     ? "0"
     : per_diff_KE.toFixed(3);
 
+  // ===== REDRAW CANVAS =====
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawSetup();
 
